@@ -40,7 +40,7 @@ class TwitterBootstrapFormFor::FormBuilder < ActionView::Helpers::FormBuilder
   #
   def toggles(label = nil, &block)
     template.content_tag(:div, :class => 'clearfix control-group') do
-      template.concat template.content_tag(:label, label)
+      template.concat template.content_tag(:label, label, :class => 'control-label')
       template.concat template.content_tag(:div, :class => "input controls") { block.call }
     end
   end
@@ -81,7 +81,7 @@ class TwitterBootstrapFormFor::FormBuilder < ActionView::Helpers::FormBuilder
       classes << ('input-' + options.delete(:add_on).to_s) if options[:add_on]
 
       self.div_wrapper(attribute) do
-        template.concat self.label(attribute, label) if label
+        template.concat self.label(attribute, label, :class => 'control-label') if label
         template.concat template.content_tag(:div, :class => classes.join(' ')) {
           template.concat super(attribute, *(args << options))
           template.concat error_span(attribute)
